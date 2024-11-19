@@ -11,7 +11,7 @@ public class Deck {
                     cards.add(new Card(values[i], s, ranks[i]));
                 }
             }
-// cards.shuffle
+        shuffle();
 
         cardsLeft = cards.size();
     }
@@ -27,6 +27,30 @@ public class Deck {
     public int getCardsLeft() {
         return cardsLeft;
     }
+    public Card deal()
+    {
+        Card c1;
+        if (isEmpty())
+        {
+            return null;
+        }
+        c1 = cards.remove(cardsLeft);
+        cardsLeft--;
+        return c1;
+    }
+    public void shuffle()
+    {
+        Card temp;
+        int random;
+        for (int i = cards.size(); i > 0;i--)
+        {
+            random = (int) (Math.random() * i + 1);
+            temp = cards.set(random, cards.get(i));
+            cards.set(i, temp);
+        }
+        cardsLeft = cards.size();
+    }
+
 
 
 }
