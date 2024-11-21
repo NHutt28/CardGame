@@ -5,7 +5,7 @@ public class Deck {
     private int cardsLeft;
 
     public Deck(int[] values, String[] ranks, String[] suits) {
-
+        cards = new ArrayList<Card>();
             for (String s : suits) {
                 for (int i = 0; i < ranks.length; i++) {
                     cards.add(new Card(values[i], s, ranks[i]));
@@ -34,7 +34,7 @@ public class Deck {
         {
             return null;
         }
-        c1 = cards.remove(cardsLeft);
+        c1 = cards.remove(cardsLeft - 1);
         cardsLeft--;
         return c1;
     }
@@ -42,7 +42,7 @@ public class Deck {
     {
         Card temp;
         int random;
-        for (int i = cards.size(); i > 0;i--)
+        for (int i = cards.size() - 1; i > 0;i--)
         {
             random = (int) (Math.random() * i + 1);
             temp = cards.set(random, cards.get(i));
@@ -51,6 +51,7 @@ public class Deck {
         cardsLeft = cards.size();
     }
 
-
-
+    public ArrayList<Card> getCards() {
+        return cards;
+    }
 }
