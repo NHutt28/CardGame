@@ -1,9 +1,8 @@
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Game {
     private Deck a;
-    private Player p1;
-    private Player p2;
     public Game() {
         Scanner input = new Scanner(System.in);
         System.out.println("What is Player One's Name?");
@@ -20,9 +19,40 @@ public class Game {
             a.addCard(deck.deal());
             b.addCard(deck.deal());
         }
-        System.out.println(a);
-        System.out.println(b);
-
+        Card p1;
+        Card p2;
+        ArrayList<Card> pile = new ArrayList<>();
+        while((a.getHand().isEmpty()) || (b.getHand().isEmpty()))
+        {
+            p1 = a.getHand().remove(0);
+            p2 = b.getHand().remove(0);
+            pile.add(p1);
+            pile.add(p2);
+            if (p1.getValue() > p2.getValue())
+            {
+                System.out.println(a.getName() + " wins!");
+                for (Card x : pile)
+                {
+                    a.addCard(x);
+                }
+            }
+            else if (p1.getValue() < p2.getValue())
+            {
+                System.out.println(b.getName() + " wins!");
+                    for (Card y : pile)
+                    {
+                        b.addCard(y);
+                    }
+            }
+            else
+            {
+                System.out.println("WAR!!");
+            }
+            for (int i = 0; i < pile.size(); i++)
+            {
+                pile.remove(i);
+            }
+        }
 
 
     }
