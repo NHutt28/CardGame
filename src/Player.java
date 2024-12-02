@@ -1,7 +1,7 @@
 import java.util.ArrayList;
 
 public class Player {
-    private ArrayList<Card> hand;
+    public ArrayList<Card> hand;
     private String name;
     private int points;
 
@@ -20,7 +20,6 @@ public class Player {
     public ArrayList<Card> getHand() {
         return hand;
     }
-
     public String getName() {
         return name;
     }
@@ -38,6 +37,6 @@ public class Player {
     }
 
     public String toString() {
-        return name + " has " + points + " points.\n" + name + "'s cards: " + hand;
+        return name + " has " + points + " wins.\n" + name + "'s cards: " + hand;
     }
 }

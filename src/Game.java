@@ -2,7 +2,6 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Game {
-    private Deck a;
     public Game() {
         Scanner input = new Scanner(System.in);
         System.out.println("What is Player One's Name?");
@@ -23,14 +22,12 @@ public class Game {
             }
             Card p1;
             Card p2;
-            Card w1;
-            Card w2;
             Player winner;
             ArrayList<Card> pile = new ArrayList<>();
             while ((!a.getHand().isEmpty()) && (!b.getHand().isEmpty())) {
                 pile.clear();
-                p1 = a.hand.remove(0);
-                p2 = b.hand.remove(0);
+                p1 = a.hand.removeFirst();
+                p2 = b.hand.removeFirst();
 
                 pile.add(p1);
                 System.out.print(a.getName() + " played " + p1);
@@ -39,15 +36,15 @@ public class Game {
 
                 if (p1.getValue() > p2.getValue()) {
                     System.out.println(a.getName() + " wins!");
-                    for (Card x : pile) {
-                        a.addCard(x);
+                    for (Card y : pile) {
+                        a.addCard(y);
                     }
                 } else if (p1.getValue() == p2.getValue()) {
                     war(pile, a, b);
                 } else {
                     System.out.println(b.getName() + " wins!");
-                    for (Card x : pile) {
-                        b.addCard(x);
+                    for (Card y : pile) {
+                        b.addCard(y);
                     }
                 }
             }
@@ -72,7 +69,7 @@ public class Game {
         int lowerHand;
         int count = 0;
         System.out.println("WAR!!");
-        if (a.getHand().size() == 0 || b.getHand().size() == 0)
+        if (a.getHand().isEmpty() || b.getHand().isEmpty())
         {
             return;
         }
@@ -86,8 +83,8 @@ public class Game {
             for (int i = 0; i < lowerHand - 1; i++)
             {
                 count++;
-                pile.add(a.getHand().remove(0));
-                pile.add(b.getHand().remove(0));
+                pile.add(a.getHand().removeFirst());
+                pile.add(b.getHand().removeFirst());
             }
             System.out.println(a.getName() + " played " + count + " cards face down");
             System.out.println(b.getName() + " played " + count + " cards face down");
@@ -96,23 +93,23 @@ public class Game {
         {
             for (int i = 0; i < 3; i++)
             {
-                pile.add(a.getHand().remove(0));
-                pile.add(b.getHand().remove(0));
+                pile.add(a.getHand().removeFirst());
+                pile.add(b.getHand().removeFirst());
             }
             System.out.println(a.getName() + " played 3 cards face down");
             System.out.println(b.getName() + " played 3 cards face down");
         }
 
-        w1 = a.getHand().remove(0);
+        w1 = a.getHand().removeFirst();
         System.out.println(a.getName() + " played " + w1);
-        w2 = b.getHand().remove(0);
+        w2 = b.getHand().removeFirst();
         System.out.println(b.getName() + " played " + w2);
         if (w1.getValue() > w2.getValue())
         {
             System.out.println(a.getName() + " wins!");
-            for (Card x : pile)
+            for (Card y : pile)
             {
-                a.addCard(x);
+                a.addCard(y);
             }
         }
         else if (w1.getValue() == w2.getValue())
@@ -122,9 +119,9 @@ public class Game {
         else
         {
             System.out.println(b.getName() + " wins!");
-            for (Card x : pile)
+            for (Card y : pile)
             {
-                b.addCard(x);
+                b.addCard(y);
             }
         }
         pile.clear();
