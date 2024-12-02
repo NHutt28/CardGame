@@ -21,13 +21,20 @@ public class Game {
         }
         Card p1;
         Card p2;
+        Card w1;
+        Card w2;
         ArrayList<Card> pile = new ArrayList<>();
-        while((a.getHand().isEmpty()) || (b.getHand().isEmpty()))
+        while((!a.getHand().isEmpty()) && (!b.getHand().isEmpty()))
         {
-            p1 = a.getHand().remove(0);
-            p2 = b.getHand().remove(0);
+            pile.clear();
+            p1 = a.hand.remove(0);
+            p2 = b.hand.remove(0);
+
             pile.add(p1);
+            System.out.print(a.getName() + " played " + p1);
             pile.add(p2);
+            System.out.println("\t" + b.getName() + " played " + p2);
+
             if (p1.getValue() > p2.getValue())
             {
                 System.out.println(a.getName() + " wins!");
@@ -36,28 +43,60 @@ public class Game {
                     a.addCard(x);
                 }
             }
-            else if (p1.getValue() < p2.getValue())
+            else if (p1.getValue() == p2.getValue())
             {
-                System.out.println(b.getName() + " wins!");
-                    for (Card y : pile)
-                    {
-                        b.addCard(y);
-                    }
+                war(pile, a, b);
             }
             else
             {
-                System.out.println("WAR!!");
-            }
-            for (int i = 0; i < pile.size(); i++)
-            {
-                pile.remove(i);
+                System.out.println(b.getName() + " wins!");
+                for (Card x : pile)
+                {
+                    b.addCard(x);
+                }
             }
         }
 
 
     }
-    public Deck getDeck() {
-        return a;
+    public void war(ArrayList<Card> pile, Player a, Player b)
+    {
+        Card w1;
+        Card w2;
+        System.out.println("WAR!!");
+        for (int i = 0; i < 3; i++)
+        {
+            pile.add(a.getHand().remove(0));
+            pile.add(b.getHand().remove(0));
+        }
+        System.out.println(a.getName() + " played 3 cards face down");
+        System.out.println(b.getName() + " played 3 cards face down");
+        w1 = a.getHand().remove(0);
+        System.out.println(a.getName() + " played " + w1);
+        w2 = b.getHand().remove(0);
+        System.out.println(b.getName() + " played " + w2);
+        if (w1.getValue() > w2.getValue())
+        {
+            System.out.println(a.getName() + " wins!");
+            for (Card x : pile)
+            {
+                a.addCard(x);
+            }
+        }
+        else if (w1.getValue() == w2.getValue())
+        {
+            war(pile, a, b);
+        }
+        else
+        {
+            System.out.println(b.getName() + " wins!");
+            for (Card x : pile)
+            {
+                b.addCard(x);
+            }
+        }
+        pile.clear();
+
     }
 
     public static void main(String[] args) {
