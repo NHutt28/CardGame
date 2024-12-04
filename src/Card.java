@@ -36,7 +36,6 @@ public class Card {
         this.rank = rank;
     }
     // ToString
-    @Override
     public String toString() {
         return rank + " of " + suit;
     }
