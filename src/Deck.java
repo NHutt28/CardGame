@@ -4,18 +4,25 @@ public class Deck {
     // Instance variables
     private ArrayList<Card> cards;
     private int cardsLeft;
+    private Card back;
 
     //Constructor
     public Deck(int[] values, String[] ranks, String[] suits) {
+        // Count for image (starts at one)
+        int count = 1;
         cards = new ArrayList<Card>();
-            for (String s : suits) {
+        // Initializes every card
+            for (int j=0; j < suits.length; j++) {
                 for (int i = 0; i < ranks.length; i++) {
-                    cards.add(new Card(values[i], s, ranks[i]));
+                    cards.add(new Card(values[i], suits[j], ranks[i], Integer.toString(count)));
+                    count++;
                 }
             }
         shuffle();
 
         cardsLeft = cards.size();
+        // Back card for the frontend
+        back = new Card(0, "0", "0", "back");
     }
     // Checks if the deck is empty
     public boolean isEmpty() {
