@@ -14,11 +14,14 @@ public class Card {
         this.value = value;
         this.suit = suit;
         this.rank = rank;
-        this.image = new ImageIcon("Resources/" + card + ".png").getImage();;
+        this.image = new ImageIcon("Resources/Cards/" + card + ".png").getImage();
 
     }
-
     // Getter and Setter Methods
+    public Image getImage() {
+        return image;
+    }
+
     public int getValue()
     {
         return value;

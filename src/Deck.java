@@ -12,9 +12,9 @@ public class Deck {
         int count = 1;
         cards = new ArrayList<Card>();
         // Initializes every card
-            for (int j=0; j < suits.length; j++) {
-                for (int i = 0; i < ranks.length; i++) {
-                    cards.add(new Card(values[i], suits[j], ranks[i], Integer.toString(count)));
+            for (int j=0; j < values.length - 1; j++) {
+                for (int i = 0; i < suits.length; i++) {
+                    cards.add(new Card(values[j], suits[i], ranks[j], Integer.toString(count)));
                     count++;
                 }
             }

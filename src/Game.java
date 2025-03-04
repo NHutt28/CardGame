@@ -9,6 +9,8 @@ public class Game {
     // Instance variables
     private Player player1;
     private Player player2;
+    private Card card1 = null;
+    private Card card2 = null;
     private Deck deck;
     private ArrayList<Card> pile;
     private Scanner input;
@@ -17,8 +19,81 @@ public class Game {
 
     // The ranks suits and values of all cards in a normal deck
     private final String[] ranks = {"Ace", "2", "3", "4", "5", "6", "7", "8", "9", "10", "Jack", "Queen", "King"};
-    private final String[] suits = {"Hearts", "Clubs", "Spades", "Diamonds"};
+    private final String[] suits = {"Spades","Hearts", "Diamonds", "Clubs"};
     private final int[] values = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14};
+
+    // Getters + Setters
+    public Deck getDeck() {
+        return deck;
+    }
+
+    public void setDeck(Deck deck) {
+        this.deck = deck;
+    }
+
+    public int getMAX_ROUNDS() {
+        return MAX_ROUNDS;
+    }
+
+    public ArrayList<Card> getPile() {
+        return pile;
+    }
+
+    public void setPile(ArrayList<Card> pile) {
+        this.pile = pile;
+    }
+
+    public Player getPlayer1() {
+        return player1;
+    }
+
+    public void setPlayer1(Player player1) {
+        this.player1 = player1;
+    }
+
+    public Player getPlayer2() {
+        return player2;
+    }
+
+    public void setPlayer2(Player player2) {
+        this.player2 = player2;
+    }
+
+    public int getRoundCount() {
+        return roundCount;
+    }
+
+    public void setRoundCount(int roundCount) {
+        this.roundCount = roundCount;
+    }
+
+    public GameView getScreen() {
+        return screen;
+    }
+
+    public void setScreen(GameView screen) {
+        this.screen = screen;
+    }
+
+    public int getWAR_CARDS() {
+        return WAR_CARDS;
+    }
+
+    public Card getCard1() {
+        return card1;
+    }
+
+    public void setCard1(Card card1) {
+        this.card1 = card1;
+    }
+
+    public Card getCard2() {
+        return card2;
+    }
+
+    public void setCard2(Card card2) {
+        this.card2 = card2;
+    }
 
     // Constuctor (initialize scanner)
     public Game() {
@@ -66,6 +141,7 @@ public class Game {
         dealCards();
         // makes new pile
         pile = new ArrayList<Card>();
+        screen.repaint();
     }
 
     private void dealCards()
@@ -103,14 +179,14 @@ public class Game {
         {
             return false;
         }
-
+        screen.repaint();
         // play down both cards
-        Card card1 = player1.getHand().remove(0);
-        Card card2 = player2.getHand().remove(0);
+        card1 = player1.getHand().remove(0);
+        card2 = player2.getHand().remove(0);
 
         pile.add(card1);
         pile.add(card2);
-
+        screen.repaint();
         System.out.println(player1.getName() + " played " + card1 + " ||| " + player2.getName() + " played " + card2);
         // checks who won
         findRoundWinner(card1, card2);
@@ -122,6 +198,7 @@ public class Game {
         // See who won
         if (card1.getValue() > card2.getValue())
         {
+            // Player 1 won
             System.out.println(player1.getName() + " wins!");
             // Adds winning cards
             for (Card b : pile)
@@ -129,6 +206,8 @@ public class Game {
         }
         else if (card1.getValue() < card2.getValue())
         {
+            // Player 2 won
+
             System.out.println(player2.getName() + " wins!");
             // adds winning cards
             for (Card b : pile)

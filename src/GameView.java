@@ -2,24 +2,30 @@ import javax.swing.*;
 import java.awt.*;
 
 public class GameView extends JFrame{
+    // Constants
     private final int WINDOW_WIDTH = 500;
     private final int WINDOW_HEIGHT = 500;
     private final int DIMENSION = 100;
     private final int HALF = 50;
     private final int TITLE_BAR_HEIGHT = 23;
+    // State instance variable
     private int state;
-
+    // Back-end
     private Game game;
+    private Image back;
+    // Constructor
     public GameView(Game game) {
 
         this.game = game;
         this.state = 0;
+        this.back = new ImageIcon("Resources/Cards/back.png").getImage();
         this.setDefaultCloseOperation(EXIT_ON_CLOSE);
         this.setTitle("The Board");
         this.setSize(WINDOW_WIDTH, WINDOW_HEIGHT);
         this.setVisible(true);
     }
 
+    // Getter / Setter
     @Override
     public int getState() {
         return state;
@@ -27,7 +33,7 @@ public class GameView extends JFrame{
 
     @Override
     public void setState(int num) {
-        this.state += num;
+        this.state = num;
     }
 
     public void paint(Graphics g)
@@ -47,9 +53,20 @@ public class GameView extends JFrame{
         }
         else if (state == 1)
         {
+            // Makes green table for gambling
             g.setColor(new Color(53,101,77));
             g.fillRect(0,0,WINDOW_WIDTH, WINDOW_HEIGHT);
+            g.setColor(new Color(255,255,255));
+            g.setFont(new Font("Script", Font.BOLD, 18));
+            // Sets up the board
+            g.drawString(game.getPlayer1().getName(), WINDOW_WIDTH/2 - 25, 50);
+            g.drawImage(back, WINDOW_WIDTH/2 - 25, 75, 50,70,this);
+            g.drawImage(back, WINDOW_WIDTH/2 - 25, 375,50,70,this);
+            g.drawString(game.getPlayer2().getName(), WINDOW_WIDTH/2 - 25, 475);
+            if (!(game.getCard1().getImage() == null) && !(game.getCard2().getImage() == null)) {
+                g.drawImage(game.getCard1().getImage(), WINDOW_WIDTH / 2 - 25, 125, 50, 70, this);
+                g.drawImage(game.getCard2().getImage(), WINDOW_WIDTH / 2 - 25, 350, 50, 70, this);
+            }
         }
-
     }
 }
