@@ -60,12 +60,14 @@ public class GameView extends JFrame{
             g.setFont(new Font("Script", Font.BOLD, 18));
             // Sets up the board
             g.drawString(game.getPlayer1().getName(), WINDOW_WIDTH/2 - 25, 50);
-            g.drawImage(back, WINDOW_WIDTH/2 - 25, 75, 50,70,this);
+            g.drawImage(back, WINDOW_WIDTH/2 - 25, 67, 50,70,this);
+            g.drawImage(back, WINDOW_WIDTH/2 - 25, 372,50,70,this);
+            g.drawImage(back, WINDOW_WIDTH/2 - 25, 70, 50,70,this);
             g.drawImage(back, WINDOW_WIDTH/2 - 25, 375,50,70,this);
             g.drawString(game.getPlayer2().getName(), WINDOW_WIDTH/2 - 25, 475);
             if (!(game.getCard1().getImage() == null) && !(game.getCard2().getImage() == null)) {
-                g.drawImage(game.getCard1().getImage(), WINDOW_WIDTH / 2 - 25, 125, 50, 70, this);
-                g.drawImage(game.getCard2().getImage(), WINDOW_WIDTH / 2 - 25, 350, 50, 70, this);
+                g.drawImage(game.getCard1().getImage(), WINDOW_WIDTH / 2 - 25, 140, 50, 70, this);
+                g.drawImage(game.getCard2().getImage(), WINDOW_WIDTH / 2 - 25, 305, 50, 70, this);
             }
         }
     }
