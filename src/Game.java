@@ -4,7 +4,7 @@ import java.util.Scanner;
 public class Game {
     // Constants
     private final int WAR_CARDS = 3;
-    private final int MAX_ROUNDS = 3000;
+    private final int MAX_ROUNDS = 1000;
 
     // Instance variables
     private Player player1;
@@ -186,7 +186,15 @@ public class Game {
 
         pile.add(card1);
         pile.add(card2);
+        // repaints screen
         screen.repaint();
+
+        // I used my brother's help for this (pause mechanism)
+        try {
+            Thread.sleep(1000); // Wait 1 second so players can see the cards
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
         System.out.println(player1.getName() + " played " + card1 + " ||| " + player2.getName() + " played " + card2);
         // checks who won
         findRoundWinner(card1, card2);
