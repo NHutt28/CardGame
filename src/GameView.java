@@ -65,10 +65,45 @@ public class GameView extends JFrame{
             g.drawImage(back, WINDOW_WIDTH/2 - 25, 70, 50,70,this);
             g.drawImage(back, WINDOW_WIDTH/2 - 25, 375,50,70,this);
             g.drawString(game.getPlayer2().getName(), WINDOW_WIDTH/2 - 25, 475);
+
+            // Shows the cards being played
             if (!(game.getCard1().getImage() == null) && !(game.getCard2().getImage() == null)) {
                 g.drawImage(game.getCard1().getImage(), WINDOW_WIDTH / 2 - 25, 140, 50, 70, this);
-                g.drawImage(game.getCard2().getImage(), WINDOW_WIDTH / 2 - 25, 305, 50, 70, this);
+                g.drawImage(game.getCard2().getImage(), WINDOW_WIDTH / 2 - 25, 300, 50, 70, this);
             }
+
+            g.drawString("Cards: " + Integer.toString(game.getPlayer1().getHandSize()),WINDOW_WIDTH/2 - 150, 50);
+            g.drawString("Cards: " + Integer.toString(game.getPlayer2().getHandSize()), WINDOW_WIDTH/2 - 150, 475);
+
+            // Shows war state of game
+            if(game.warState)
+            {
+                g.drawString("WAR!", WINDOW_WIDTH/2 - 24, WINDOW_HEIGHT/2);
+                try{
+                    //  half second wait time
+                    Thread.sleep(500);
+                } catch (InterruptedException e) {
+                }
+                // Puts down 3 face down cards on each side
+                g.drawImage(back, 25, WINDOW_HEIGHT/2 - 25, 50,70,this);
+                g.drawImage(back, 100, WINDOW_HEIGHT/2 - 25,50,70,this);
+                g.drawImage(back, 175, WINDOW_HEIGHT/2 - 25, 50,70,this);
+                try{
+                    //  half second wait time
+                    Thread.sleep(500);
+                } catch (InterruptedException e) {
+                }
+                g.drawImage(back, 275, WINDOW_HEIGHT/2 - 25,50,70,this);
+                g.drawImage(back, 350, WINDOW_HEIGHT/2 - 25,50,70,this);
+                g.drawImage(back, 425, WINDOW_HEIGHT/2 - 25,50,70,this);
+                try{
+                    //  half second wait time
+                    Thread.sleep(500);
+                } catch (InterruptedException e) {
+                }
+            }
+
+
         }
     }
 }

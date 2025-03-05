@@ -16,7 +16,7 @@ public class Game {
     private Scanner input;
     private int roundCount;
     private GameView screen;
-
+    public boolean warState = false;
     // The ranks suits and values of all cards in a normal deck
     private final String[] ranks = {"Ace", "2", "3", "4", "5", "6", "7", "8", "9", "10", "Jack", "Queen", "King"};
     private final String[] suits = {"Spades","Hearts", "Diamonds", "Clubs"};
@@ -191,14 +191,17 @@ public class Game {
 
         // I used my brother's help for this (pause mechanism)
         try {
-            Thread.sleep(1000); // Wait 1 second so players can see the cards
+            // Half a second wait time
+            Thread.sleep(500);
         } catch (InterruptedException e) {
-            e.printStackTrace();
+            // He said nothing needs to be here
         }
+
         System.out.println(player1.getName() + " played " + card1 + " ||| " + player2.getName() + " played " + card2);
         // checks who won
         findRoundWinner(card1, card2);
         // continues game
+        warState = false;
         return true;
     }
 
@@ -231,6 +234,7 @@ public class Game {
 
     private void war()
     {
+        warState = true;
         if (player1.getHand().size() < WAR_CARDS + 1 || player2.getHand().size() < WAR_CARDS + 1)
         {
             System.out.println("Not enough cards for war \nGame Over.");
