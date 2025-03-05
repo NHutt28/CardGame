@@ -4,7 +4,7 @@ import java.util.Scanner;
 public class Game {
     // Constants
     private final int WAR_CARDS = 3;
-    private final int MAX_ROUNDS = 1000;
+    private final int MAX_ROUNDS = 400;
 
     // Instance variables
     private Player player1;
@@ -237,6 +237,7 @@ public class Game {
         warState = true;
         if (player1.getHand().size() < WAR_CARDS + 1 || player2.getHand().size() < WAR_CARDS + 1)
         {
+            warState = false;
             System.out.println("Not enough cards for war \nGame Over.");
             if (player1.getHand().size() > player2.getHand().size())
             {
@@ -254,6 +255,8 @@ public class Game {
                 }
 
             }
+            checkWin();
+            screen.repaint();
             return;
         }
         // else just play cards down
@@ -273,6 +276,8 @@ public class Game {
         if (roundCount >= MAX_ROUNDS)
         {
             System.out.println("DRAW");
+            screen.setState(2);
+            screen.repaint();
             return true;
         }
         // Check who won
@@ -280,11 +285,15 @@ public class Game {
         {
             System.out.println(player2.getName() + " wins the GAME!");
             player2.addPoints(1);
+            screen.setState(2);
+            screen.repaint();
             return true;
         }
         if (player2.getHand().isEmpty()) {
             System.out.println(player1.getName() + " wins the GAME!");
             player1.addPoints(1);
+            screen.setState(2);
+            screen.repaint();
             return true;
         }
         return false;
@@ -305,6 +314,8 @@ public class Game {
         {
             return false;
         }
+        screen.setState(1);
+        screen.repaint();
         return true;
     }
 

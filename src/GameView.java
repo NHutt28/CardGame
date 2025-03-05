@@ -40,6 +40,7 @@ public class GameView extends JFrame{
     {
         if(state == 0)
         {
+            g.setColor(new Color(0,0,0));
             // Draws instructions
             g.setFont(new Font("Arial", Font.BOLD, 40));
             g.drawString("WAR", 200, 100);
@@ -72,8 +73,9 @@ public class GameView extends JFrame{
                 g.drawImage(game.getCard2().getImage(), WINDOW_WIDTH / 2 - 25, 300, 50, 70, this);
             }
 
-            g.drawString("Cards: " + Integer.toString(game.getPlayer1().getHandSize()),WINDOW_WIDTH/2 - 150, 50);
-            g.drawString("Cards: " + Integer.toString(game.getPlayer2().getHandSize()), WINDOW_WIDTH/2 - 150, 475);
+            // Display amount of cards in players hands
+            g.drawString("Cards: " + Integer.toString(game.getPlayer1().getHandSize() + 1),WINDOW_WIDTH/2 - 150, 50);
+            g.drawString("Cards: " + Integer.toString(game.getPlayer2().getHandSize() + 1), WINDOW_WIDTH/2 - 150, 475);
 
             // Shows war state of game
             if(game.warState)
@@ -102,6 +104,19 @@ public class GameView extends JFrame{
                 } catch (InterruptedException e) {
                 }
             }
+
+        }
+        // Game over state
+        else if (state == 2)
+        {
+            g.setColor(Color.white);
+            g.fillRect(0,0,WINDOW_WIDTH, WINDOW_HEIGHT);
+            g.setColor(new Color(0,0,0));
+            g.setFont(new Font("Arial", Font.BOLD, 40));
+            g.drawString("GAME OVER", WINDOW_WIDTH/2 - 100, 100);
+            g.drawString(game.getPlayer1().getName() + " has " + game.getPlayer1().getPoints() + " wins!", 20, 150);
+            g.drawString(game.getPlayer2().getName() + " has " + game.getPlayer1().getPoints() + " wins!", 20, 250);
+
 
 
         }
