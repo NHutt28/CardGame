@@ -126,8 +126,9 @@ public class GameView extends JFrame{
             g.setColor(new Color(0,0,0));
             g.setFont(new Font("Arial", Font.BOLD, 40));
             g.drawString("GAME OVER", WINDOW_WIDTH/2 - 100, 100);
-            g.drawString(game.getPlayer1().getName() + " has " + game.getPlayer1().getPoints() + " wins!", 20, 150);
-            g.drawString(game.getPlayer2().getName() + " has " + game.getPlayer1().getPoints() + " wins!", 20, 250);
+            g.drawString("Play Again?", WINDOW_WIDTH/2 - 100, 450);
+            g.drawString(game.getPlayer1().getName() + " has " + game.getPlayer1().getPoints() + " wins!", 20, 225);
+            g.drawString(game.getPlayer2().getName() + " has " + game.getPlayer1().getPoints() + " wins!", 20, 325);
 
 
 
