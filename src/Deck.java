@@ -4,7 +4,6 @@ public class Deck {
     // Instance variables
     private ArrayList<Card> cards;
     private int cardsLeft;
-    private Card back;
 
     //Constructor
     public Deck(int[] values, String[] ranks, String[] suits) {
@@ -21,8 +20,6 @@ public class Deck {
         shuffle();
 
         cardsLeft = cards.size();
-        // Back card for the frontend
-        back = new Card(0, "0", "0", "back");
     }
     // Checks if the deck is empty
     public boolean isEmpty() {
@@ -31,10 +28,6 @@ public class Deck {
              return true;
          }
          return false;
-    }
-    // getter method for cardsLeft
-    public int getCardsLeft() {
-        return cardsLeft;
     }
     // Deal method - gives the top card
     public Card deal()
@@ -60,9 +53,5 @@ public class Deck {
             cards.set(i, temp);
         }
         cardsLeft = cards.size();
-    }
-    // getter method for cards (arraylist)
-    public ArrayList<Card> getCards() {
-        return cards;
     }
 }

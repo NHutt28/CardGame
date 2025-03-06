@@ -13,12 +13,6 @@ public class Player {
         this.hand = new ArrayList<Card>();
         this.points = 0;
     }
-    // Constructor with hand
-    public Player(ArrayList<Card> hand, String name) {
-        this.hand = hand;
-        this.name = name;
-        this.points = 0;
-    }
 
     // Getters
     public ArrayList<Card> getHand() {

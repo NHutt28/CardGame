@@ -146,7 +146,7 @@ public class Game {
         }
         catch (InterruptedException e)
         {
-            // He said nothing needs to be here
+
         }
 
         System.out.println(player1.getName() + " played " + card1 + " ||| " + player2.getName() + " played " + card2);
