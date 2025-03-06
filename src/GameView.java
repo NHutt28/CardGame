@@ -2,17 +2,19 @@ import javax.swing.*;
 import java.awt.*;
 
 public class GameView extends JFrame{
-    // Constants
+
+    // Constants for window
     private final int WINDOW_WIDTH = 500;
     private final int WINDOW_HEIGHT = 500;
-    private final int DIMENSION = 100;
-    private final int HALF = 50;
-    private final int TITLE_BAR_HEIGHT = 23;
+
     // State instance variable
     private int state;
     // Back-end
     private Game game;
+
+    // Backside of card
     private Image back;
+
     // Constructor
     public GameView(Game game) {
 
@@ -25,7 +27,7 @@ public class GameView extends JFrame{
         this.setVisible(true);
     }
 
-    // Getter / Setter
+    // Getters / Setters
     @Override
     public int getState() {
         return state;
@@ -40,7 +42,9 @@ public class GameView extends JFrame{
     {
         if(state == 0)
         {
+            // Resets colour
             g.setColor(new Color(0,0,0));
+
             // Draws instructions
             g.setFont(new Font("Arial", Font.BOLD, 40));
             g.drawString("WAR", 200, 100);
@@ -59,6 +63,7 @@ public class GameView extends JFrame{
             g.fillRect(0,0,WINDOW_WIDTH, WINDOW_HEIGHT);
             g.setColor(new Color(255,255,255));
             g.setFont(new Font("Script", Font.BOLD, 18));
+
             // Sets up the board
             g.drawString(game.getPlayer1().getName(), WINDOW_WIDTH/2 - 25, 50);
             g.drawImage(back, WINDOW_WIDTH/2 - 25, 67, 50,70,this);
@@ -118,6 +123,7 @@ public class GameView extends JFrame{
             }
 
         }
+
         // Game over state
         else if (state == 2)
         {

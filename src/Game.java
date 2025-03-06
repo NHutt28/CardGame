@@ -23,85 +23,25 @@ public class Game {
     private final String[] suits = {"Spades","Hearts", "Diamonds", "Clubs"};
     private final int[] values = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14};
 
-    // Getters + Setters
-    public Deck getDeck() {
-        return deck;
-    }
-
-    public void setDeck(Deck deck) {
-        this.deck = deck;
-    }
-
-    public int getMAX_ROUNDS() {
-        return MAX_ROUNDS;
-    }
-
-    public ArrayList<Card> getPile() {
-        return pile;
-    }
-
-    public void setPile(ArrayList<Card> pile) {
-        this.pile = pile;
-    }
-
+    // Getters
     public Player getPlayer1() {
         return player1;
-    }
-
-    public void setPlayer1(Player player1) {
-        this.player1 = player1;
     }
 
     public Player getPlayer2() {
         return player2;
     }
 
-    public void setPlayer2(Player player2) {
-        this.player2 = player2;
-    }
-
-    public int getRoundCount() {
-        return roundCount;
-    }
-
-    public void setRoundCount(int roundCount) {
-        this.roundCount = roundCount;
-    }
-
-    public GameView getScreen() {
-        return screen;
-    }
-
-    public void setScreen(GameView screen) {
-        this.screen = screen;
-    }
-
-    public int getWAR_CARDS() {
-        return WAR_CARDS;
-    }
-
     public Card getCard1() {
         return card1;
-    }
-
-    public void setCard1(Card card1) {
-        this.card1 = card1;
     }
 
     public Card getCard2() {
         return card2;
     }
 
-    public void setCard2(Card card2) {
-        this.card2 = card2;
-    }
-
     public Player getWinner() {
         return winner;
-    }
-
-    public void setWinner(Player winner) {
-        this.winner = winner;
     }
 
     // Constuctor (initialize scanner)
@@ -199,10 +139,13 @@ public class Game {
         screen.repaint();
 
         // I used my brother's help for this (pause mechanism)
-        try {
+        try
+        {
             // Half a second wait time
             Thread.sleep(500);
-        } catch (InterruptedException e) {
+        }
+        catch (InterruptedException e)
+        {
             // He said nothing needs to be here
         }
 
@@ -221,7 +164,7 @@ public class Game {
             // Player 1 won
             winner = player1;
             System.out.println(player1.getName() + " wins!");
-            // Adds winning cards
+            // Adds winning cards to winner
             for (Card b : pile)
                 player1.addCard(b);
 
@@ -231,7 +174,7 @@ public class Game {
             // Player 2 won
             winner = player2;
             System.out.println(player2.getName() + " wins!");
-            // adds winning cards
+            // adds winning cards to winner
             for (Card b : pile)
                 player2.addCard(b);
         }
@@ -245,6 +188,7 @@ public class Game {
 
     private void war()
     {
+        // If there's not enough cards
         warState = true;
         if (player1.getHand().size() < WAR_CARDS + 1 || player2.getHand().size() < WAR_CARDS + 1)
         {
@@ -266,11 +210,12 @@ public class Game {
                 }
 
             }
+            // Ends game
             checkWin();
             screen.repaint();
             return;
         }
-        // else just play cards down
+        // else just play the war
         for (int i = 0; i < WAR_CARDS; i++)
         {
             pile.add(player1.getHand().remove(0));
@@ -291,7 +236,7 @@ public class Game {
             screen.repaint();
             return true;
         }
-        // Check who won
+        // Check who won by seeing if hand is empty
         if (player1.getHand().isEmpty())
         {
             System.out.println(player2.getName() + " wins the GAME!");
