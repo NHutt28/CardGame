@@ -77,9 +77,21 @@ public class GameView extends JFrame{
             g.drawString("Cards: " + Integer.toString(game.getPlayer1().getHandSize() + 1),WINDOW_WIDTH/2 - 150, 50);
             g.drawString("Cards: " + Integer.toString(game.getPlayer2().getHandSize() + 1), WINDOW_WIDTH/2 - 150, 475);
 
+            // Display who won
+            if(game.getWinner().equals(game.getPlayer1()))
+            {
+                g.setColor(new Color(187, 165,61));
+                g.drawString(game.getPlayer1().getName(), WINDOW_WIDTH/2 - 25, 50);
+            }
+            else
+            {
+                g.setColor(new Color(187, 165,61));
+                g.drawString(game.getPlayer2().getName(), WINDOW_WIDTH/2 - 25, 475);
+            }
             // Shows war state of game
             if(game.warState)
             {
+                g.setColor(Color.white);
                 g.drawString("WAR!", WINDOW_WIDTH/2 - 24, WINDOW_HEIGHT/2);
                 try{
                     //  half second wait time

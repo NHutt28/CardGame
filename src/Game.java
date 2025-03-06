@@ -9,6 +9,7 @@ public class Game {
     // Instance variables
     private Player player1;
     private Player player2;
+    private Player winner;
     private Card card1 = null;
     private Card card2 = null;
     private Deck deck;
@@ -93,6 +94,14 @@ public class Game {
 
     public void setCard2(Card card2) {
         this.card2 = card2;
+    }
+
+    public Player getWinner() {
+        return winner;
+    }
+
+    public void setWinner(Player winner) {
+        this.winner = winner;
     }
 
     // Constuctor (initialize scanner)
@@ -210,15 +219,17 @@ public class Game {
         if (card1.getValue() > card2.getValue())
         {
             // Player 1 won
+            winner = player1;
             System.out.println(player1.getName() + " wins!");
             // Adds winning cards
             for (Card b : pile)
                 player1.addCard(b);
+
         }
         else if (card1.getValue() < card2.getValue())
         {
             // Player 2 won
-
+            winner = player2;
             System.out.println(player2.getName() + " wins!");
             // adds winning cards
             for (Card b : pile)
